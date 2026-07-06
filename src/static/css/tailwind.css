@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  @apply bg-stone-100 text-stone-900;
+  @apply bg-brand-bone text-brand-ink;
 }
 
 h1 {

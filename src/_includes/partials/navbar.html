@@ -1,23 +1,23 @@
-<div class="bg-stone-800 text-stone-100">
+<div class="bg-brand-pine text-brand-bone">
     <div class="container mx-auto flex flex-col gap-2 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:text-xs sm:tracking-[0.22em]">
         <p class="text-center sm:text-left">{{ settings.name }}</p>
         <div class="flex flex-col gap-2 text-center sm:flex-row sm:items-center sm:gap-6 sm:text-left">
-            <a href="mailto:{{ settings.email }}" class="hover:text-amber-300">Email Us</a>
-            <a href="tel:{{ settings.phone }}" class="hover:text-amber-300">Emergencies and After Hours: {{ settings.phone }}</a>
+            <a href="mailto:{{ settings.email }}" class="hover:text-brand-sand">Email Us</a>
+            <a href="tel:{{ settings.phone }}" class="hover:text-brand-sand">Emergencies and After Hours: {{ settings.phone }}</a>
         </div>
     </div>
 </div>
 
-<header class="sticky top-0 z-50 border-b border-stone-300 bg-stone-100/95 backdrop-blur">
-    <nav class="container mx-auto flex flex-wrap items-center gap-3 px-4 py-4 sm:px-6" x-data="{ isOpen: false }" @keydown.escape="isOpen = false" @click.away="isOpen = false">
+<header class="sticky top-0 z-50 border-b border-brand-pine/15 bg-white/95 backdrop-blur">
+    <nav class="container mx-auto flex min-h-[72px] flex-wrap items-center gap-3 px-4 py-3 sm:px-6" x-data="{ isOpen: false }" @keydown.escape="isOpen = false" @click.away="isOpen = false">
         <a href="/" class="flex min-w-0 items-center gap-3 text-left">
-            <img src="/static/img/bigfoot-logo.jpg" alt="{{ settings.name }} logo" class="h-12 w-12 rounded-full border-2 border-stone-300 object-cover shadow-sm sm:h-16 sm:w-16">
+            <img src="/static/img/bigfoot-logo.jpg" alt="{{ settings.name }} logo" class="h-12 w-12 rounded-full border-2 border-brand-pine/20 object-cover shadow-sm sm:h-16 sm:w-16">
             <span>
-                <span class="block text-base font-black text-stone-900 sm:text-lg">{{ settings.name }}</span>
+                <span class="block text-base font-black text-brand-pine sm:text-lg">{{ settings.name }}</span>
             </span>
         </a>
 
-        <button @click="isOpen = !isOpen" type="button" class="ml-auto inline-flex rounded border border-stone-400 px-3 py-2 text-stone-700 lg:hidden" aria-label="Menu">
+        <button @click="isOpen = !isOpen" type="button" class="ml-auto inline-flex rounded border border-brand-pine/35 px-3 py-2 text-brand-pine lg:hidden" aria-label="Menu">
             <svg class="h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path x-show="isOpen" fill-rule="evenodd" clip-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
                 <path x-show="!isOpen" fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
@@ -29,13 +29,13 @@
                 <ul class="flex list-none flex-col gap-2 pt-4 text-left lg:flex-row lg:items-center lg:gap-1 lg:pt-0">
                     {% for item in navigation.items %}
                         <li>
-                            <a @click="isOpen = false" class="inline-block rounded px-4 py-2 text-sm font-semibold text-stone-700 transition hover:bg-stone-200 hover:text-stone-900" href="{{ item.url }}">{{ item.text }}</a>
+                            <a @click="isOpen = false" class="inline-block rounded px-4 py-2 text-sm font-semibold text-brand-pine transition hover:bg-brand-sand/35 hover:text-brand-pine" href="{{ item.url }}">{{ item.text }}</a>
                         </li>
                     {% endfor %}
                 </ul>
             {% endif %}
 
-            <a href="tel:{{ settings.phone }}" class="mt-4 inline-flex w-full items-center justify-center rounded bg-stone-800 px-5 py-3 text-center text-sm font-black uppercase tracking-[0.14em] text-stone-100 transition hover:bg-stone-700 lg:mt-0 lg:w-auto lg:tracking-[0.18em]">Call {{ settings.phone }}</a>
+            <a href="tel:{{ settings.phone }}" class="mt-4 inline-flex w-full items-center justify-center rounded bg-brand-pine px-5 py-3 text-center text-sm font-black uppercase tracking-[0.14em] text-brand-bone transition hover:bg-brand-hide lg:mt-0 lg:w-auto lg:tracking-[0.18em]">Call {{ settings.phone }}</a>
         </div>
     </nav>
 </header>
