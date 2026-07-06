@@ -14,10 +14,9 @@ local_backend: true
 collections:
   - label: "Animals"
     name: "animals"
-    folder: "src/animals"
+    folder: "src/animals/pages"
     create: true
     slug: "{{slug}}"
-    filter: {field: "layout", value: "animal"}
     editor:
       preview: false
     fields:
