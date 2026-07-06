@@ -1,15 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {% set pageTitle = title ~ (title and " | " or "") ~ settings.name %}
+    {% set pageDescription = description or "Wildlife removal, exclusion, and animal damage repair for homes, cabins, rentals, and commercial properties." %}
+    {% set canonicalUrl = settings.url ~ (page.url or "/") %}
+    {% set socialImage = settings.url ~ "/static/img/bigfoot-logo.jpg" %}
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-      {{title}}{% if title %} | {% endif %}{{settings.name}}
+      {{ pageTitle }}
     </title>
-    {% if description %}
-      <meta name="description" content="{{description}}"/>
-    {% endif %}
+    <meta name="description" content="{{ pageDescription }}"/>
+    <meta name="robots" content="index, follow"/>
+    <link rel="canonical" href="{{ canonicalUrl }}"/>
+    <link rel="icon" type="image/jpeg" href="/static/img/bigfoot-logo.jpg"/>
+    <link rel="apple-touch-icon" href="/static/img/bigfoot-logo.jpg"/>
+    <meta name="theme-color" content="#002715"/>
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="{{ settings.name }}"/>
+    <meta property="og:title" content="{{ pageTitle }}"/>
+    <meta property="og:description" content="{{ pageDescription }}"/>
+    <meta property="og:url" content="{{ canonicalUrl }}"/>
+    <meta property="og:image" content="{{ socialImage }}"/>
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="{{ pageTitle }}"/>
+    <meta name="twitter:description" content="{{ pageDescription }}"/>
+    <meta name="twitter:image" content="{{ socialImage }}"/>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": {{ settings.name | dump | safe }},
+        "url": {{ settings.url | dump | safe }},
+        "telephone": {{ settings.phone | dump | safe }},
+        "email": {{ settings.email | dump | safe }},
+        "areaServed": {{ settings.service_area | dump | safe }},
+        "image": {{ socialImage | dump | safe }}
+      }
+    </script>
     {% if path == "home" %}
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
       <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
