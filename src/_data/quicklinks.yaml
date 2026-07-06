@@ -1,14 +1,14 @@
 ---
 links:
-  - title: Netlify CMS
-    url: "https://www.netlifycms.org/"
-    desc: Open source content management for your Git workflow
-  - title: Eleventy
-    url: "https://www.11ty.dev/"
-    desc: Eleventy is a simpler static site generator.
-  - title: Alpine.js
-    url: "https://github.com/alpinejs/alpine"
-    desc: A minimal framework for composing JavaScript behavior in your markup.
-  - title: Tailwind CSS
-    url: "https://tailwindcss.com/"
-    desc: A utility-first CSS framework for rapidly building custom designs.
+  - title: Bat Exclusion
+    url: "#services"
+    desc: Permanent sealing and exclusion work for bats in attics, walls, and soffits.
+  - title: Bird Control
+    url: "#services"
+    desc: Bird exclusion, deterrents, netting, cleanup, and commercial bird work.
+  - title: Animal Education
+    url: "#animals"
+    desc: Handling and prevention guidance for common nuisance wildlife.
+  - title: Service Area Map
+    url: "#coverage"
+    desc: Review current area-code hubs and travel radius coverage.

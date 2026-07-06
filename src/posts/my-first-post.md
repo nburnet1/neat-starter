@@ -1,60 +1,25 @@
 ---
-title: This is my first post
-description: Capitalize on low hanging fruit to identify a ballpark value added
-  activity to beta test. Override the digital divide with additional
-  clickthroughs from DevOps.
-author: Surjith S M
-date: 2020-09-01
+title: What to do when bats are in the attic
+description: Bats in the attic usually mean a structural entry point needs proper exclusion, not a quick patch.
+author: Bigfoot Wildlife Team
+date: 2024-09-01
 tags:
-  - left
-  - center
-  - right
+  - bats
+  - exclusion
 ---
-# This is a Heading h1
 
-## This is a Heading h2
+Bats in an attic are usually a sign that the home has one or more active entry points. The goal is not just to remove the bats you hear. The goal is to identify how they are getting in and close those areas correctly.
 
-###### This is a Heading h6
+## Common signs
 
-## Emphasis
+- Fluttering or scratching sounds around dusk or dawn
+- Droppings near soffits, gable vents, ridge areas, or attic access points
+- Odor building up in enclosed attic spaces
 
-*This text will be italic*\
-*This will also be italic*
+## What not to do
 
-**This text will be bold**\
-**This will also be bold**
+Do not seal holes while bats are still using the structure. Blocking them inside can create a bigger problem.
 
-*You **can** combine them*
+## What helps prevent repeat problems
 
-## Lists
-
-### Unordered
-
-* Item 1
-* Item 2
-
-  * Item 2a
-  * Item 2b
-
-### Ordered
-
-1. Item 1
-2. Item 2
-3. Item 3
-
-   1. Item 3a
-   2. Item 3b
-
-## Links
-
-You may be using [Markdown Live Preview](https://markdownlivepreview.com/).
-
-## Blockquotes
-
-> Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber with Aaron Swartz.
->
-> > Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.
-
-## Inline code
-
-This web site is using `markedjs/marked`.
+Proper bat exclusion, sealing secondary gaps, and repairing the areas that allowed entry in the first place.

@@ -4,12 +4,36 @@
 
 /*Your Custom CSS Goes here*/
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-stone-100 text-stone-900;
+}
+
 h1 {
-  @apply text-4xl tracking-tighter mb-3 text-center lg:text-7xl;
+  @apply mb-3 text-3xl leading-tight tracking-tight sm:text-4xl lg:text-7xl;
+}
+
+h2 {
+  @apply text-2xl tracking-tight sm:text-3xl lg:text-5xl;
 }
 
 h3 {
-  @apply text-2xl font-bold mb-3;
+  @apply mb-3 text-xl font-bold sm:text-2xl;
+}
+
+a {
+  @apply transition;
+}
+
+img {
+  @apply max-w-full;
+}
+
+[x-cloak] {
+  display: none !important;
 }
 
 /* Syntax Highlighting*/

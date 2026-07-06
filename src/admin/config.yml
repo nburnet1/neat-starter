@@ -12,24 +12,24 @@ public_folder: "/static/img"
 local_backend: true
 # publish_mode: editorial_workflow
 collections:
-  - label: "Blog"
-    name: "blog"
-    folder: "src/posts"
+  - label: "Animals"
+    name: "animals"
+    folder: "src/animals"
     create: true
+    slug: "{{slug}}"
+    filter: {field: "layout", value: "animal"}
     editor:
       preview: false
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "string" }
-      - { label: "Author", name: "author", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - widget: select
-        label: "tags"
-        name: "tags"
-        multiple: true
-        create: true
-        options: ["Tags", "created", "from", "config.yml"]
+      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - label: "Signs"
+        name: "signs"
+        widget: list
+        field: { label: Sign, name: sign, widget: string }
+      - { label: "Handling", name: "handling", widget: "text" }
+      - { label: "Prevention", name: "prevention", widget: "text" }
   - label: "Settings"
     name: "settings"
     editor:
@@ -66,3 +66,109 @@ collections:
           - { label: Name, name: name, widget: string }
           - { label: Author, name: author, widget: string }
           - { label: URL, name: url, widget: string }
+          - { label: Phone, name: phone, widget: string }
+          - { label: Email, name: email, widget: string }
+          - { label: Service Area, name: service_area, widget: string }
+      - label: "Homepage"
+        name: "home"
+        file: "src/_data/home.yaml"
+        fields:
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: Primary CTA Label, name: primary_cta_label, widget: string }
+          - { label: Secondary CTA Label, name: secondary_cta_label, widget: string }
+          - label: Stats
+            name: stats
+            widget: list
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Value, name: value, widget: string }
+          - { label: Trust Heading, name: trust_heading, widget: string }
+          - label: Trust Points
+            name: trust_points
+            widget: list
+            field: { label: Point, name: point, widget: string }
+          - { label: Animals Eyebrow, name: animals_eyebrow, widget: string }
+          - { label: Animals Title, name: animals_title, widget: string }
+          - { label: Animals Intro, name: animals_intro, widget: text }
+          - label: Featured Animal One
+            name: featured_animal_one
+            widget: relation
+            collection: animals
+            search_fields: [title]
+            value_field: "{{slug}}"
+            display_fields: [title]
+          - label: Featured Animal Two
+            name: featured_animal_two
+            widget: relation
+            collection: animals
+            search_fields: [title]
+            value_field: "{{slug}}"
+            display_fields: [title]
+          - label: Featured Animal Three
+            name: featured_animal_three
+            widget: relation
+            collection: animals
+            search_fields: [title]
+            value_field: "{{slug}}"
+            display_fields: [title]
+          - { label: Animals CTA Label, name: animals_cta_label, widget: string }
+      - label: "Services"
+        name: "services"
+        file: "src/_data/services.yaml"
+        fields:
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: Title, name: title, widget: string }
+          - { label: Intro, name: intro, widget: text }
+          - label: Service Items
+            name: items
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
+      - label: "Service Areas"
+        name: "serviceAreas"
+        file: "src/_data/serviceAreas.yaml"
+        fields:
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: Title, name: title, widget: string }
+          - { label: Intro, name: intro, widget: text }
+          - label: Areas
+            name: areas
+            widget: list
+            fields:
+              - { label: Zip Code, name: zip_code, widget: string }
+              - { label: City, name: city, widget: string }
+              - { label: State, name: state, widget: string }
+              - { label: Latitude, name: latitude, widget: number, value_type: float }
+              - { label: Longitude, name: longitude, widget: number, value_type: float }
+              - { label: Radius Miles, name: radius_miles, widget: number, value_type: int }
+              - { label: Summary, name: summary, widget: text }
+      - label: "About and Credentials"
+        name: "about"
+        file: "src/_data/about.yaml"
+        fields:
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: Title, name: title, widget: string }
+          - { label: Intro, name: intro, widget: text }
+          - label: Paragraphs
+            name: paragraphs
+            widget: list
+            field: { label: Paragraph, name: paragraph, widget: text }
+          - label: Value Cards
+            name: values
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
+          - { label: Credentials Intro, name: credentials_intro, widget: string }
+          - label: Credentials
+            name: credentials
+            widget: list
+            field: { label: Credential, name: credential, widget: string }
+          - { label: Training Intro, name: training_intro, widget: string }
+          - label: Training
+            name: training
+            widget: list
+            field: { label: Training Item, name: training_item, widget: string }

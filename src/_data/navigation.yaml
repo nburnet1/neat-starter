@@ -1,9 +1,9 @@
 items:
-  - text: Blog This will work
-    url: /blog
-  - text: Menu One
-    url: "#"
-  - text: Menu Two
-    url: "#"
-  - text: Menu Three
-    url: "#"
+  - text: Services
+    url: "#services"
+  - text: Animals
+    url: "/animals/"
+  - text: About
+    url: "#about"
+  - text: Service Area
+    url: "#coverage"
