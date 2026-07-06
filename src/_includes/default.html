@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% set pageTitle = title ~ (title and " | " or "") ~ settings.name %}
+    {% if title == settings.name %}
+      {% set pageTitle = settings.name %}
+    {% else %}
+      {% set pageTitle = title ~ (title and " | " or "") ~ settings.name %}
+    {% endif %}
     {% set pageDescription = description or "Wildlife removal, exclusion, and animal damage repair for homes, cabins, rentals, and commercial properties." %}
     {% set canonicalUrl = settings.url ~ (page.url or "/") %}
     {% set socialImage = settings.url ~ "/static/img/bigfoot-logo.jpg" %}
