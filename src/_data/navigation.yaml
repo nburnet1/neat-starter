@@ -1,9 +1,9 @@
 items:
   - text: Services
-    url: "#services"
+    url: /#services
   - text: Animals
-    url: "/animals/"
+    url: /animals/
   - text: About
-    url: "#about"
+    url: /#about
   - text: Service Area
-    url: "#coverage"
+    url: /#coverage
