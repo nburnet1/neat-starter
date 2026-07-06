@@ -22,7 +22,6 @@ description: Animal education pages for common wildlife problems, handling guida
           <img src="{{ animal.data.image }}" alt="{{ animal.data.title }}" class="h-48 w-full border border-stone-200 object-cover sm:h-56">
         {% endif %}
         <h2 class="mt-6 text-2xl font-black text-stone-900 sm:text-3xl"><a href="{{ animal.url | url }}">{{ animal.data.title }}</a></h2>
-        <p class="mt-4 text-sm leading-7 text-stone-700">{{ animal.data.summary }}</p>
         <a href="{{ animal.url | url }}" class="mt-6 inline-flex text-sm font-black uppercase tracking-[0.2em] text-stone-800 underline decoration-amber-500 decoration-2 underline-offset-4">Read guidance</a>
       </article>
     {% endfor %}

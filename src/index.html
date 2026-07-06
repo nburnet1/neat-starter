@@ -57,8 +57,7 @@ path: home
   <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
     {% for service in services.items %}
       <article class="border border-stone-300 bg-white p-5 shadow-sm transition hover:-translate-y-1 sm:p-7">
-        <p class="text-sm font-semibold uppercase tracking-[0.3em] text-stone-500">0{{ loop.index }}</p>
-        <h3 class="mt-6 text-2xl font-black text-stone-900">{{ service.title }}</h3>
+        <h3 class="text-2xl font-black text-stone-900">{{ service.title }}</h3>
         <p class="mt-4 text-sm leading-7 text-stone-700">{{ service.body }}</p>
       </article>
     {% endfor %}
@@ -87,7 +86,6 @@ path: home
                 <div class="flex h-48 items-center justify-center border border-dashed border-stone-500 bg-stone-800 px-4 text-center text-sm leading-6 text-stone-400 sm:h-56 sm:px-6 sm:leading-7">Add a photo for {{ animal.data.title }} in the content manager.</div>
               {% endif %}
               <h3 class="mt-6 text-2xl font-black text-white"><a href="{{ animal.url | url }}">{{ animal.data.title }}</a></h3>
-              <p class="mt-4 text-sm leading-7 text-stone-200">{{ animal.data.summary }}</p>
               <a href="{{ animal.url | url }}" class="mt-6 inline-flex text-sm font-black uppercase tracking-[0.2em] text-amber-300 underline decoration-amber-500 decoration-2 underline-offset-4">Read guidance</a>
             </article>
           {% endif %}

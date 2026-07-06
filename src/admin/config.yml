@@ -21,14 +21,8 @@ collections:
       preview: false
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Summary", name: "summary", widget: "text" }
       - { label: "Image", name: "image", widget: "image", required: false }
-      - label: "Signs"
-        name: "signs"
-        widget: list
-        field: { label: Sign, name: sign, widget: string }
-      - { label: "Handling", name: "handling", widget: "text" }
-      - { label: "Prevention", name: "prevention", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
   - label: "Settings"
     name: "settings"
     editor:
