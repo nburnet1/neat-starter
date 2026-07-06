@@ -1,24 +1,29 @@
-eyebrow: "Western North Carolina Wildlife Services"
-title: "Wildlife removal, exclusion, and animal damage repair."
-description: "Fully licensed and insured nuisance wildlife removal, trapping, deterrence, and exclusion for homes, cabins, rentals, and commercial properties."
-primary_cta_label: "Call Now"
-secondary_cta_label: "View Services"
+eyebrow: Western North Carolina Wildlife Services
+title: Wildlife removal, exclusion, and animal damage repair.
+description: Fully licensed and insured nuisance wildlife removal, trapping,
+  deterrence, and exclusion for homes, cabins, rentals, and commercial
+  properties.
+primary_cta_label: Call Now
+secondary_cta_label: View Services
 stats:
-  - label: "Primary Focus"
-    value: "Bat and bird exclusion"
-  - label: "Best Fit"
-    value: "Cabins, rentals, steep roofs"
-  - label: "Coverage"
-    value: "North Carolina, South Carolina, Tennessee"
-trust_heading: "What makes Bigfoot different"
+  - label: Primary Focus
+    value: Bat and bird exclusion
+  - label: Best Fit
+    value: Cabins, rentals, steep roofs
+  - label: Coverage
+    value: North Carolina, South Carolina, Tennessee
+trust_heading: What makes Bigfoot different
 trust_points:
-  - "NWCOA course certified technicians on staff."
-  - "Custom solutions for bat, bird, raccoon, and squirrel problems based on how animals actually behave."
-  - "Experienced with difficult to reach wildlife issues, steep pitched rooftops, mountainside structures, churches, and similar buildings."
-animals_eyebrow: "Animal Education"
-animals_title: "Featured animal pages for common wildlife problems."
-animals_intro: "Each animal page gives visitors handling guidance, common signs, and prevention steps, with room for uploaded photos and future additions."
-featured_animal_one: "Bats"
-featured_animal_two: "Birds"
-featured_animal_three: "Raccoons"
-animals_cta_label: "View More Animals"
+  - NWCOA course certified technicians on staff.
+  - Custom solutions for bat, bird, raccoon, and squirrel problems based on how
+    animals actually behave.
+  - Experienced with difficult to reach wildlife issues, steep pitched rooftops,
+    mountainside structures, churches, and similar buildings.
+animals_eyebrow: Animal Education
+animals_title: Featured animal pages for common wildlife problems.
+animals_intro: Each animal page gives visitors handling guidance, common signs,
+  and prevention steps, with room for uploaded photos and future additions.
+featured_animal_one: Animal 1
+featured_animal_two: Birds
+featured_animal_three: Raccoons
+animals_cta_label: View More Animals
