@@ -97,21 +97,21 @@ collections:
             widget: relation
             collection: animals
             search_fields: [title]
-            value_field: "{{slug}}"
+            value_field: title
             display_fields: [title]
           - label: Featured Animal Two
             name: featured_animal_two
             widget: relation
             collection: animals
             search_fields: [title]
-            value_field: "{{slug}}"
+            value_field: title
             display_fields: [title]
           - label: Featured Animal Three
             name: featured_animal_three
             widget: relation
             collection: animals
             search_fields: [title]
-            value_field: "{{slug}}"
+            value_field: title
             display_fields: [title]
           - { label: Animals CTA Label, name: animals_cta_label, widget: string }
       - label: "Services"

@@ -5,7 +5,7 @@ description: Wildlife removal, exclusion, and damage repair for homes, cabins, a
 path: home
 ---
 
-{% set featuredAnimalSlugs = [home.featured_animal_one, home.featured_animal_two, home.featured_animal_three] %}
+{% set featuredAnimalTitles = [home.featured_animal_one, home.featured_animal_two, home.featured_animal_three] %}
 
 <section class="relative overflow-hidden border-b border-stone-300 bg-stone-200/80">
   <div class="container relative mx-auto px-4 py-10 sm:px-6 lg:py-16">
@@ -77,9 +77,9 @@ path: home
     </div>
 
     <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      {% for featuredSlug in featuredAnimalSlugs %}
+      {% for featuredTitle in featuredAnimalTitles %}
         {% for animal in collections.animal | reverse %}
-          {% if animal.fileSlug == featuredSlug %}
+          {% if animal.data.title == featuredTitle %}
             <article class="border border-stone-600 bg-stone-700 p-5 shadow-sm sm:p-6">
               {% if animal.data.image %}
                 <img src="{{ animal.data.image }}" alt="{{ animal.data.title }}" class="h-48 w-full border border-stone-500 object-cover sm:h-56">
