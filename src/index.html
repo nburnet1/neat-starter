@@ -82,13 +82,13 @@ path: home
             <article class="border border-brand-pine/12 bg-white p-5 shadow-sm sm:p-6">
               {% if animal.data.image %}
                 <div class="flex h-48 items-center justify-center sm:h-56">
-                  <img src="{{ animal.data.image }}" alt="{{ animal.data.title }}" class="max-h-full w-full object-contain">
+                  <img src="{{ animal.data.image }}" alt="{{ animal.data.image_alt or animal.data.title }}" class="max-h-full w-full object-contain">
                 </div>
               {% else %}
                 <div class="flex h-48 items-center justify-center border border-dashed border-brand-smoke/40 bg-brand-bone px-4 text-center text-sm leading-6 text-brand-smoke sm:h-56 sm:px-6 sm:leading-7">Add a photo for {{ animal.data.title }} in the content manager.</div>
               {% endif %}
               <h3 class="mt-6 text-2xl font-black text-brand-pine"><a href="{{ animal.url | url }}">{{ animal.data.title }}</a></h3>
-              <a href="{{ animal.url | url }}" class="mt-6 inline-flex text-sm font-black uppercase tracking-[0.2em] text-brand-rust underline decoration-brand-brass decoration-2 underline-offset-4">Read guidance</a>
+              <a href="{{ animal.url | url }}" class="mt-6 inline-flex text-sm font-black uppercase tracking-[0.2em] text-brand-rust underline decoration-brand-brass decoration-2 underline-offset-4">Read more</a>
             </article>
           {% endif %}
         {% endfor %}

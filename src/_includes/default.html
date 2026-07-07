@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% if title == settings.name %}
+    {% set seoTitle = seo_title or title %}
+    {% set seoDescription = seo_description or description %}
+    {% if seoTitle == settings.name %}
       {% set pageTitle = settings.name %}
     {% else %}
-      {% set pageTitle = title ~ (title and " | " or "") ~ settings.name %}
+      {% set pageTitle = seoTitle ~ (seoTitle and " | " or "") ~ settings.name %}
     {% endif %}
-    {% set pageDescription = description or "Wildlife removal, exclusion, and animal damage repair for homes, cabins, rentals, and commercial properties." %}
+    {% set pageDescription = seoDescription or "Wildlife removal, exclusion, and animal damage repair for homes, cabins, rentals, and commercial properties." %}
     {% set canonicalUrl = settings.url ~ (page.url or "/") %}
-    {% set socialImage = settings.url ~ "/static/img/bigfoot-logo.jpg" %}
+    {% if image %}
+      {% if image.slice and image.slice(0, 4) == "http" %}
+        {% set socialImage = image %}
+      {% else %}
+        {% set socialImage = settings.url ~ image %}
+      {% endif %}
+    {% else %}
+      {% set socialImage = settings.url ~ "/static/img/og-default.jpg" %}
+    {% endif %}
+    {% set socialImageAlt = image_alt or title or settings.name %}
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,8 +29,11 @@
     <meta name="description" content="{{ pageDescription }}"/>
     <meta name="robots" content="index, follow"/>
     <link rel="canonical" href="{{ canonicalUrl }}"/>
-    <link rel="icon" type="image/jpeg" href="/static/img/bigfoot-logo.jpg"/>
-    <link rel="apple-touch-icon" href="/static/img/bigfoot-logo.jpg"/>
+    <link rel="icon" href="/favicon.ico" sizes="any"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+    <link rel="manifest" href="/site.webmanifest"/>
     <meta name="theme-color" content="#002715"/>
 
     <meta property="og:type" content="website"/>
@@ -28,6 +42,7 @@
     <meta property="og:description" content="{{ pageDescription }}"/>
     <meta property="og:url" content="{{ canonicalUrl }}"/>
     <meta property="og:image" content="{{ socialImage }}"/>
+    <meta property="og:image:alt" content="{{ socialImageAlt }}"/>
 
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content="{{ pageTitle }}"/>
@@ -37,13 +52,43 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": {{ settings.name | dump | safe }},
-        "url": {{ settings.url | dump | safe }},
-        "telephone": {{ settings.phone | dump | safe }},
-        "email": {{ settings.email | dump | safe }},
-        "areaServed": {{ settings.service_area | dump | safe }},
-        "image": {{ socialImage | dump | safe }}
+        "@graph": [
+          {
+            "@type": "LocalBusiness",
+            "@id": {{ (settings.url ~ "#business") | dump | safe }},
+            "name": {{ settings.name | dump | safe }},
+            "url": {{ settings.url | dump | safe }},
+            "telephone": {{ settings.phone | dump | safe }},
+            "email": {{ settings.email | dump | safe }},
+            "areaServed": {{ settings.service_area | dump | safe }},
+            "image": {{ socialImage | dump | safe }},
+            "logo": {{ (settings.url ~ "/static/img/bigfoot-logo.jpg") | dump | safe }},
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": {{ settings.phone | dump | safe }},
+              "contactType": "customer service"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": {{ (settings.url ~ "#website") | dump | safe }},
+            "url": {{ settings.url | dump | safe }},
+            "name": {{ settings.name | dump | safe }}
+          },
+          {
+            "@type": "WebPage",
+            "@id": {{ canonicalUrl | dump | safe }},
+            "url": {{ canonicalUrl | dump | safe }},
+            "name": {{ pageTitle | dump | safe }},
+            "description": {{ pageDescription | dump | safe }},
+            "isPartOf": {
+              "@id": {{ (settings.url ~ "#website") | dump | safe }}
+            },
+            "about": {
+              "@id": {{ (settings.url ~ "#business") | dump | safe }}
+            }
+          }
+        ]
       }
     </script>
     {% if path == "home" %}
@@ -52,9 +97,6 @@
     {% endif %}
     {% block head %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
-    {% if prism == true %}
-      <link rel="stylesheet" type="text/css" href="/static/css/prism-tomorrow.css">
-    {% endif %}
   </head>
   <body class="flex min-h-screen flex-col bg-brand-bone text-brand-ink antialiased">
     {% include "./partials/navbar.html" %}

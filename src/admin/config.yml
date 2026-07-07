@@ -21,7 +21,10 @@ collections:
       preview: false
     fields:
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "SEO Title", name: "seo_title", widget: "string", required: false }
+      - { label: "SEO Description", name: "seo_description", widget: "text", required: false }
       - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Image Alt Text", name: "image_alt", widget: "string", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
   - label: "Settings"
     name: "settings"
