@@ -36,6 +36,13 @@ img {
   display: none !important;
 }
 
+.leaflet-top,
+.leaflet-bottom,
+.leaflet-pane,
+.leaflet-control {
+  z-index: 10 !important;
+}
+
 /* Syntax Highlighting*/
 
 body :not(pre) > code[class*="language-"],
