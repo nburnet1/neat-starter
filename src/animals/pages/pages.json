@@ -1,5 +1,5 @@
 {
   "layout": "animal",
   "tags": ["animal"],
-  "permalink": "/animals/{{ page.fileSlug }}/"
+  "permalink": "/wildlife/{{ page.fileSlug }}/"
 }

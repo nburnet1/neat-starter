@@ -1,15 +1,16 @@
 ---
 layout: default
-title: Animal Education
-description: Animal education pages for common wildlife problems, handling guidance, and prevention steps.
+permalink: /wildlife/
+title: Wildlife Education
+description: Wildlife education pages for common nuisance wildlife problems, guidance, and prevention steps.
 ---
 
 <section class="border-b border-brand-pine/12 bg-brand-bone">
   <div class="container mx-auto px-4 py-14 sm:px-6 lg:py-20">
     <div class="max-w-3xl">
-      <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-smoke">Animal Education</p>
-      <h1 class="mt-3 text-left text-brand-pine">Choose an animal to review handling and prevention guidance.</h1>
-      <p class="mt-6 text-base leading-7 text-brand-hide sm:leading-8">Use this section to educate visitors on what they are hearing, seeing, or dealing with on the property, and what steps help prevent repeat entry.</p>
+      <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-smoke">Wildlife Education</p>
+      <h1 class="mt-3 text-left text-brand-pine">Choose a wildlife topic to review guidance and prevention information.</h1>
+      <p class="mt-6 text-base leading-7 text-brand-hide sm:leading-8">Use this section to educate visitors on what they are hearing, seeing, or dealing with on the property, and what steps help prevent repeat problems.</p>
     </div>
   </div>
 </section>
@@ -24,7 +25,7 @@ description: Animal education pages for common wildlife problems, handling guida
           </div>
         {% endif %}
         <h2 class="mt-6 text-2xl font-black text-brand-pine sm:text-3xl"><a href="{{ animal.url | url }}">{{ animal.data.title }}</a></h2>
-        <a href="{{ animal.url | url }}" class="mt-6 inline-flex text-sm font-black uppercase tracking-[0.2em] text-brand-rust underline decoration-brand-brass decoration-2 underline-offset-4">Read guidance</a>
+        <a href="{{ animal.url | url }}" class="mt-6 inline-flex text-sm font-black uppercase tracking-[0.2em] text-brand-rust underline decoration-brand-brass decoration-2 underline-offset-4">Read more</a>
       </article>
     {% endfor %}
   </div>

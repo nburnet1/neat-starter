@@ -12,7 +12,7 @@ public_folder: "/static/img"
 local_backend: true
 # publish_mode: editorial_workflow
 collections:
-  - label: "Animals"
+  - label: "Wildlife"
     name: "animals"
     folder: "src/animals/pages"
     create: true
@@ -82,9 +82,9 @@ collections:
             name: trust_points
             widget: list
             field: { label: Point, name: point, widget: string }
-          - { label: Animals Eyebrow, name: animals_eyebrow, widget: string }
-          - { label: Animals Title, name: animals_title, widget: string }
-          - { label: Animals Intro, name: animals_intro, widget: text }
+          - { label: Wildlife Eyebrow, name: animals_eyebrow, widget: string }
+          - { label: Wildlife Title, name: animals_title, widget: string }
+          - { label: Wildlife Intro, name: animals_intro, widget: text }
           - label: Featured Animal One
             name: featured_animal_one
             widget: relation
@@ -106,7 +106,7 @@ collections:
             search_fields: [title]
             value_field: title
             display_fields: [title]
-          - { label: Animals CTA Label, name: animals_cta_label, widget: string }
+          - { label: Wildlife CTA Label, name: animals_cta_label, widget: string }
       - label: "Services"
         name: "services"
         file: "src/_data/services.yaml"
