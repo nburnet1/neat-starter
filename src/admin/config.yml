@@ -28,9 +28,13 @@ collections:
       - { label: "Image Alt Text", name: "image_alt", widget: "string", required: false }
       - label: "Related Services"
         name: "related_services"
-        widget: "list"
+        widget: "relation"
+        collection: "services"
+        search_fields: [title]
+        value_field: title
+        display_fields: [title]
+        multiple: true
         required: false
-        field: { label: "Service", name: "service", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
   - label: "Services"
     name: "services"
@@ -46,14 +50,22 @@ collections:
       - { label: "SEO Description", name: "seo_description", widget: "text", required: false }
       - label: "Animals"
         name: "animals"
-        widget: "list"
+        widget: "relation"
+        collection: "animals"
+        search_fields: [title]
+        value_field: title
+        display_fields: [title]
+        multiple: true
         required: false
-        field: { label: "Animal", name: "animal", widget: "string" }
       - label: "Locations"
         name: "locations"
-        widget: "list"
+        widget: "relation"
+        collection: "locations"
+        search_fields: [title]
+        value_field: title
+        display_fields: [title]
+        multiple: true
         required: false
-        field: { label: "Location", name: "location", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
   - label: "Locations"
     name: "locations"
@@ -83,12 +95,22 @@ collections:
         widget: "list"
         required: false
         fields:
-          - { label: "Service", name: "service", widget: "string" }
+          - label: "Service"
+            name: "service"
+            widget: "relation"
+            collection: "services"
+            search_fields: [title]
+            value_field: title
+            display_fields: [title]
           - label: "Animals"
             name: "animals"
-            widget: "list"
+            widget: "relation"
+            collection: "animals"
+            search_fields: [title]
+            value_field: title
+            display_fields: [title]
+            multiple: true
             required: false
-            field: { label: "Animal", name: "animal", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
   - label: "Settings"
     name: "settings"
@@ -176,10 +198,14 @@ collections:
           - { label: Wildlife CTA Label, name: animals_cta_label, widget: string }
           - label: Featured Services
             name: featured_services
-            widget: list
+            widget: relation
+            collection: services
+            search_fields: [title]
+            value_field: title
+            display_fields: [title]
+            multiple: true
             max: 4
-            field: { label: Service, name: service, widget: string }
-            hint: "Pick up to 6 services to feature on the homepage."
+            hint: "Pick up to 4 services to feature on the homepage."
       - label: "Services Page"
         name: "services"
         file: "src/_data/services.yaml"
