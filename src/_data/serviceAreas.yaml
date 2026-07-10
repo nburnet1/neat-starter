@@ -16,12 +16,12 @@ areas:
     state: NC
     radius_miles: 40
     latitude: 35.3187
-    longitude: 82.4607
+    longitude: -82.4607
     summary: Main service area.
   - city: Charlotte
     state: NC
     zip_code: "28202"
     latitude: 35.2272
-    longitude: 80.8431
+    longitude: -80.8431
     radius_miles: 20
     summary: Bat and bird exclusion coverage for larger regional projects.
