@@ -9,7 +9,7 @@ areas:
     state: TN
     latitude: 35.9606
     longitude: -83.9207
-    radius_miles: 20
+    radius_miles: 15
     summary: Bat and bird exclusion coverage for larger regional projects.
   - zip_code: "28792"
     city: Hendersonville
@@ -23,5 +23,5 @@ areas:
     zip_code: "28202"
     latitude: 35.2272
     longitude: -80.8431
-    radius_miles: 20
+    radius_miles: 15
     summary: Bat and bird exclusion coverage for larger regional projects.
