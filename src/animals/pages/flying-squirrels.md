@@ -5,7 +5,9 @@ seo_description: ""
 image: https://magazine.outdoornebraska.gov/wp-content/uploads/2024/08/GettyImages-478323446.jpg
 image_alt: ""
 related_services:
-  - Squirrel Removal
+  - Exclusion
+  - Cleanup
+  - Animal Damage Repair
 ---
 **Flying Squirrel Removal & Control Services**
 
