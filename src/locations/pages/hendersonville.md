@@ -1,13 +1,15 @@
 ---
 title: Hendersonville
-seo_title: "Wildlife Removal Services in Hendersonville, NC"
-seo_description: "Full-service wildlife removal, trapping, exclusion, and repair in Hendersonville, North Carolina. Serving a 55 mile radius."
+seo_title: Wildlife Removal Services in Hendersonville, NC
+seo_description: Full-service wildlife removal, trapping, exclusion, and repair
+  in Hendersonville, North Carolina. Serving a 55 mile radius.
 state: NC
 zip_code: "28792"
 latitude: 35.3187
 longitude: -82.4607
 radius_miles: 55
-summary: Main service area with full wildlife removal, trapping, exclusion, and repair services.
+summary: Main service area with full wildlife removal, trapping, exclusion, and
+  repair services.
 service_tags:
   - residential
   - commercial
@@ -35,6 +37,9 @@ location_services:
       - Grey Squirrels
       - Flying Squirrels
       - Raccoons
+      - Groundhogs
+      - Mice
+      - Skunks
   - service: Cleanup
     animals:
       - Bats
