@@ -14,7 +14,7 @@ areas:
   - zip_code: "28792"
     city: Hendersonville
     state: NC
-    radius_miles: 50
+    radius_miles: 55
     latitude: 35.3187
     longitude: -82.4607
     summary: Main service area.
