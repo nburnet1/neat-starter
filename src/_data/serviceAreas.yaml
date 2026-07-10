@@ -1,32 +1,27 @@
-eyebrow: "Coverage"
-title: "Service areas with visible travel radius."
-intro: "For clients closer to Murphy we provide a full array of trapping and other services for almost any animal. For larger city markets we focus on bat and bird exclusion services."
+eyebrow: Coverage
+title: Service areas with visible travel radius.
+intro: For clients closer to Hendersonville we provide a full array of trapping
+  and other services for almost any animal. For larger city markets we focus on
+  bat and bird exclusion services.
 areas:
-  - zip_code: "28906"
-    city: "Murphy"
-    state: "NC"
-    latitude: 35.0876
-    longitude: -84.0346
-    radius_miles: 40
-    summary: "Primary wildlife trapping, removal, exclusion, and repair service area."
-  - zip_code: "28801"
-    city: "Asheville"
-    state: "NC"
-    latitude: 35.5951
-    longitude: -82.5515
-    radius_miles: 45
-    summary: "Regional bat and bird exclusion work for residential and commercial properties."
-  - zip_code: "29601"
-    city: "Greenville"
-    state: "SC"
-    latitude: 34.8526
-    longitude: -82.3940
-    radius_miles: 45
-    summary: "Commercial, industrial, and larger residential exclusion projects."
   - zip_code: "37902"
-    city: "Knoxville"
-    state: "TN"
+    city: Knoxville
+    state: TN
     latitude: 35.9606
     longitude: -83.9207
-    radius_miles: 50
-    summary: "Bat and bird exclusion coverage for larger regional projects."
+    radius_miles: 20
+    summary: Bat and bird exclusion coverage for larger regional projects.
+  - zip_code: "28792"
+    city: Hendersonville
+    state: NC
+    radius_miles: 40
+    latitude: 35.3187
+    longitude: 82.4607
+    summary: Main service area.
+  - city: Charlotte
+    state: NC
+    zip_code: "28202"
+    latitude: 35.2272
+    longitude: 80.8431
+    radius_miles: 20
+    summary: Bat and bird exclusion coverage for larger regional projects.
