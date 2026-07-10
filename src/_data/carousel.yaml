@@ -1,9 +1,9 @@
 eyebrow: Recent Work
 title: Photos from the field.
 photos:
-  - image: /static/img/bigfoot-logo.jpg
+  - image: https://bigrat.monster/media/bigrat.jpg
     alt: Bigfoot Wildlife Solutions team at work
-    caption: Professional wildlife removal
+    caption: Big Rat
   - image: /static/img/nwcoa-certified.png
     alt: NWCOA certified professionals
     caption: Certified wildlife control
