@@ -7,6 +7,7 @@ path: home
 
 {% set featuredAnimalTitles = [home.featured_animal_one, home.featured_animal_two, home.featured_animal_three] %}
 
+{# ── HERO ── #}
 <section class="relative overflow-hidden border-b border-brand-pine/12 bg-brand-bone">
   <div class="container relative mx-auto px-4 py-10 sm:px-6 lg:py-16">
     <div class="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
@@ -16,8 +17,8 @@ path: home
         <p class="mt-5 max-w-2xl text-base leading-7 text-brand-hide sm:text-lg sm:leading-8">{{ home.description }}</p>
 
         <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-          <a href="tel:{{ settings.phone }}" class="inline-flex items-center justify-center rounded bg-brand-pine px-6 py-4 text-sm font-black uppercase tracking-[0.2em] text-brand-bone transition hover:-translate-y-0.5 hover:bg-brand-hide">{{ home.primary_cta_label }} {{ settings.phone }}</a>
-          <a href="#services" class="inline-flex items-center justify-center rounded border border-brand-pine/30 bg-white px-6 py-4 text-sm font-black uppercase tracking-[0.2em] text-brand-pine transition hover:-translate-y-0.5 hover:shadow-md">{{ home.secondary_cta_label }}</a>
+          <a href="tel:{{ settings.phone }}" class="inline-flex items-center justify-center rounded bg-brand-pine px-6 py-4 text-sm font-black uppercase tracking-[0.12em] text-brand-bone transition hover:-translate-y-0.5 hover:bg-brand-hide sm:tracking-[0.2em]">{{ home.primary_cta_label }} {{ settings.phone }}</a>
+          <a href="/contact/" class="inline-flex items-center justify-center rounded border border-brand-pine/30 bg-white px-6 py-4 text-sm font-black uppercase tracking-[0.2em] text-brand-pine transition hover:-translate-y-0.5 hover:shadow-md">Contact Us</a>
         </div>
 
         <dl class="mt-8 grid gap-4 sm:grid-cols-3">
@@ -45,6 +46,71 @@ path: home
   </div>
 </section>
 
+{# ── COVERAGE / MAP ── #}
+<section id="coverage" class="border-b border-brand-pine/12 bg-brand-bone">
+  <div class="container mx-auto px-4 py-14 sm:px-6 lg:py-20">
+    <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-smoke">{{ serviceAreas.eyebrow }}</p>
+        <h2 class="mt-3 text-brand-pine">{{ serviceAreas.title }}</h2>
+        <p class="mt-6 text-base leading-7 text-brand-hide sm:leading-8">{{ serviceAreas.intro }}</p>
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+          {% for loc in collections.location %}
+            <a href="{{ loc.url | url }}" data-area-focus class="block w-full border border-brand-pine/12 bg-white px-4 py-3 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-brand-pine/30 hover:bg-white hover:shadow-md">
+              <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-smoke">Zip Code {{ loc.data.zip_code }}</p>
+              <h3 class="mt-2 text-xl font-black text-brand-pine">{{ loc.data.title }}, {{ loc.data.state }}</h3>
+              <p class="mt-2 text-xs font-semibold uppercase tracking-[0.24em] text-brand-smoke">{{ loc.data.radius_miles }} mile radius</p>
+              {% if loc.data.service_tags and loc.data.service_tags.length %}
+                <div class="mt-2 flex flex-wrap gap-1">
+                  {% for tag in loc.data.service_tags %}
+                    <span class="rounded-full border border-brand-pine/15 bg-brand-bone px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em] text-brand-smoke">{{ tag }}</span>
+                  {% endfor %}
+                </div>
+              {% endif %}
+              <div class="mt-2">
+                {% for ls in loc.data.location_services %}
+                  {% set isLastSvc = loop.last %}
+                  <span class="mr-1 inline-block text-[10px] text-brand-hide">{{ ls.service }}{% if not isLastSvc %},{% endif %}</span>
+                {% endfor %}
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div>
+        <div id="service-area-map" class="min-h-[18rem] border border-brand-pine/12 bg-white shadow-sm sm:min-h-[22rem] lg:min-h-[26rem]"></div>
+        <div class="mt-4 flex flex-col items-start justify-between gap-4 border border-brand-pine/12 bg-white p-4 shadow-sm sm:flex-row sm:items-center">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-smoke">Need service in your area?</p>
+            <p class="mt-1 text-sm leading-7 text-brand-hide">Call for wildlife removal, exclusion, and repair estimates.</p>
+          </div>
+          <div class="flex flex-col gap-2 sm:flex-row">
+            <a href="tel:{{ settings.phone }}" class="inline-flex items-center justify-center rounded bg-brand-pine px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-brand-bone transition hover:-translate-y-0.5 hover:bg-brand-hide">Call {{ settings.phone }}</a>
+            <a href="/contact/" class="inline-flex items-center justify-center rounded border border-brand-pine/30 bg-white px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-brand-pine transition hover:-translate-y-0.5 hover:shadow-md">Contact Us</a>
+          </div>
+        </div>
+        <div class="hidden">
+          {% for loc in collections.location %}
+            <div
+              data-service-area
+              data-zip-code="{{ loc.data.zip_code }}"
+              data-city="{{ loc.data.title }}"
+              data-state="{{ loc.data.state }}"
+              data-latitude="{{ loc.data.latitude }}"
+              data-longitude="{{ loc.data.longitude }}"
+              data-radius-miles="{{ loc.data.radius_miles }}"
+              data-summary="{{ loc.data.summary }}"
+            ></div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ── FEATURED SERVICES (top 4) ── #}
 <section id="services" class="container mx-auto px-4 py-14 sm:px-6 lg:py-20">
   <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
     <div>
@@ -54,16 +120,191 @@ path: home
     <p class="max-w-2xl text-sm leading-7 text-brand-hide">{{ services.intro }}</p>
   </div>
 
-  <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-    {% for service in services.items %}
-      <article class="border border-brand-pine/12 bg-white p-5 shadow-sm transition hover:-translate-y-1 sm:p-7">
-        <h3 class="text-2xl font-black text-brand-pine">{{ service.title }}</h3>
-        <p class="mt-4 text-sm leading-7 text-brand-hide">{{ service.body }}</p>
-      </article>
+  <div class="mt-10 grid gap-6 md:grid-cols-2">
+    {% for featuredTitle in home.featured_services %}
+      {% for svc in collections.service %}
+        {% if svc.data.title == featuredTitle %}
+          <article class="border border-brand-pine/12 bg-white p-5 shadow-sm transition hover:-translate-y-1 sm:p-7">
+            <h3 class="text-2xl font-black text-brand-pine"><a href="{{ svc.url | url }}">{{ svc.data.title }}</a></h3>
+                        <div class="mt-4">
+              <p class="line-clamp-3 text-sm leading-7 text-brand-hide">{{ svc.templateContent | striptags }}</p>
+              <a href="{{ svc.url | url }}" class="mt-1 flex justify-end text-xs font-bold uppercase tracking-[0.14em] text-brand-rust hover:underline">Learn more</a>
+            </div>
+            {% if svc.data.animals and svc.data.animals.length %}
+              <div class="mt-4 flex flex-wrap gap-1.5">
+                {% for animalName in svc.data.animals %}
+                  {% for animal in collections.animal %}
+                    {% if animal.data.title == animalName %}
+                      <a href="{{ animal.url | url }}" class="rounded-full border border-brand-pine/15 bg-brand-bone px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-smoke transition hover:bg-brand-sand">{{ animalName }}</a>
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </article>
+        {% endif %}
+      {% endfor %}
     {% endfor %}
+  </div>
+
+  <div class="mt-8 text-center">
+    <a href="/services/" class="inline-flex items-center justify-center rounded border border-brand-pine/30 bg-white px-6 py-4 text-sm font-black uppercase tracking-[0.2em] text-brand-pine transition hover:-translate-y-0.5 hover:shadow-md">View All Services</a>
   </div>
 </section>
 
+{# ── REVIEWS CAROUSEL ── #}
+{% if reviews.reviews and reviews.reviews.length %}
+<section id="reviews" class="border-y border-brand-pine/12 bg-brand-hide">
+  <div class="container mx-auto px-4 py-14 sm:px-6 lg:py-20">
+    <div class="text-center">
+      <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-sand">{{ reviews.eyebrow }}</p>
+      <h2 class="mt-3 text-brand-bone">{{ reviews.title }}</h2>
+    </div>
+
+    <div
+      x-data="{
+        current: 0,
+        total: {{ reviews.reviews | length }},
+        touchStartX: 0,
+        touchEndX: 0,
+        interval: null,
+        paused: false,
+        startTimer() {
+          this.interval = setInterval(() => {
+            if (!this.paused) this.current = (this.current + 1) % this.total;
+          }, {{ reviews.interval or 6000 }});
+        },
+        next() { this.current = (this.current + 1) % this.total; },
+        prev() { this.current = this.current === 0 ? this.total - 1 : this.current - 1; }
+      }"
+      x-init="startTimer()"
+      @mouseenter="paused = true"
+      @mouseleave="paused = false"
+      @touchstart="paused = true"
+      class="relative mx-auto mt-10 max-w-3xl"
+    >
+      <div class="overflow-hidden"
+        @touchstart="touchStartX = $event.changedTouches[0].screenX"
+        @touchend="touchEndX = $event.changedTouches[0].screenX; if (touchStartX - touchEndX > 50) { next() } else if (touchEndX - touchStartX > 50) { prev() }"
+      >
+        <div class="flex transition-transform duration-500 ease-in-out" :style="'transform: translateX(-' + (current * 100) + '%)'">
+          {% for review in reviews.reviews %}
+            <div class="w-full flex-shrink-0 px-2">
+              <div class="border border-brand-pine/12 bg-white p-6 text-center shadow-sm sm:p-8">
+                <div class="flex items-center justify-center gap-1">
+                  {% for i in range(0, review.rating) %}
+                    <svg class="h-5 w-5 text-brand-brass" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  {% endfor %}
+                  {% for i in range(review.rating, 5) %}
+                    <svg class="h-5 w-5 text-brand-sand/50" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  {% endfor %}
+                </div>
+                <blockquote class="mt-6 text-base leading-8 text-brand-hide sm:text-lg sm:leading-8">"{{ review.body }}"</blockquote>
+                <div class="mt-6">
+                  <p class="text-sm font-black text-brand-pine">{{ review.name }}</p>
+                  <p class="mt-1 text-xs font-semibold uppercase tracking-[0.28em] text-brand-smoke">{{ review.description }}</p>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <button @click="prev()" class="absolute left-0 top-1/2 -translate-x-2 -translate-y-1/2 border border-brand-pine/20 bg-white p-2 text-brand-pine shadow-sm transition hover:bg-brand-pine hover:text-brand-bone sm:-translate-x-4 sm:p-3" aria-label="Previous review">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <button @click="next()" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 border border-brand-pine/20 bg-white p-2 text-brand-pine shadow-sm transition hover:bg-brand-pine hover:text-brand-bone sm:translate-x-4 sm:p-3" aria-label="Next review">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </button>
+
+      <div class="mt-6 flex justify-center gap-2">
+        {% for review in reviews.reviews %}
+          <button @click="current = {{ loop.index0 }}" :class="current === {{ loop.index0 }} ? 'bg-brand-bone' : 'bg-brand-smoke/40'" class="h-2.5 w-2.5 rounded-full transition" aria-label="Go to review {{ loop.index }}"></button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ── PHOTO CAROUSEL ── #}
+{% if carousel.photos.length %}
+<section id="carousel" class="border-y border-brand-pine/12 bg-brand-bone">
+  <div class="container mx-auto px-4 py-14 sm:px-6 lg:py-20">
+    <div class="text-center">
+      <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-smoke">{{ carousel.eyebrow }}</p>
+      <h2 class="mt-3 text-brand-pine">{{ carousel.title }}</h2>
+    </div>
+
+    <div x-data="{ current: 0, total: {{ carousel.photos | length }}, touchStartX: 0, touchEndX: 0 }" class="relative mt-10">
+      <div class="overflow-hidden"
+        @touchstart="touchStartX = $event.changedTouches[0].screenX"
+        @touchend="touchEndX = $event.changedTouches[0].screenX; if (touchStartX - touchEndX > 50) { current = current === total - 1 ? 0 : current + 1 } else if (touchEndX - touchStartX > 50) { current = current === 0 ? total - 1 : current - 1 }"
+      >
+        <div class="flex transition-transform duration-500 ease-in-out" :style="'transform: translateX(-' + (current * 100) + '%)'">
+          {% for photo in carousel.photos %}
+            <div class="w-full flex-shrink-0 px-2">
+              <div class="mx-auto max-w-3xl">
+                <img src="{{ photo.image }}" alt="{{ photo.alt }}" class="mx-auto h-64 w-full border border-brand-pine/12 bg-white object-contain p-4 shadow-sm sm:h-80 lg:h-96">
+                {% if photo.caption %}
+                  <p class="mt-4 text-center text-sm text-brand-hide">{{ photo.caption }}</p>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <button @click="current = current === 0 ? total - 1 : current - 1" class="absolute left-2 top-1/2 -translate-y-1/2 border border-brand-pine/20 bg-white p-2 text-brand-pine shadow-sm transition hover:bg-brand-pine hover:text-brand-bone sm:left-0 sm:p-3" aria-label="Previous photo">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <button @click="current = current === total - 1 ? 0 : current + 1" class="absolute right-2 top-1/2 -translate-y-1/2 border border-brand-pine/20 bg-white p-2 text-brand-pine shadow-sm transition hover:bg-brand-pine hover:text-brand-bone sm:right-0 sm:p-3" aria-label="Next photo">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </button>
+
+      <div class="mt-6 flex justify-center gap-2">
+        {% for photo in carousel.photos %}
+          <button @click="current = {{ loop.index0 }}" :class="current === {{ loop.index0 }} ? 'bg-brand-pine' : 'bg-brand-sand'" class="h-2.5 w-2.5 rounded-full transition" aria-label="Go to photo {{ loop.index }}"></button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ── ABOUT (condensed) ── #}
+<section id="about" class="container mx-auto px-4 py-14 sm:px-6 lg:py-20">
+  <div>
+    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-smoke">{{ about.eyebrow }}</p>
+    <h2 class="mt-3 text-brand-pine">{{ about.title }}</h2>
+    <p class="mt-6 max-w-3xl text-base leading-7 text-brand-hide sm:text-lg sm:leading-8">{{ about.intro }}</p>
+  </div>
+
+  <div class="mt-10 grid gap-4">
+    {% for value in about.values %}
+      <article class="border border-brand-pine/12 bg-white p-5 shadow-sm">
+        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-smoke">{{ value.title }}</p>
+        <p class="mt-3 text-sm leading-7 text-brand-hide">{{ value.body }}</p>
+      </article>
+    {% endfor %}
+  </div>
+
+  <div class="mt-10 border-t border-brand-pine/10 pt-8">
+    <p class="text-center text-xs font-semibold uppercase tracking-[0.35em] text-brand-smoke">Certified &amp; Trained Professionals</p>
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+      <img src="/static/img/nwcoa-bird-management-certified.png" alt="NWCOA bird management certified badge" class="h-16 object-contain sm:h-20">
+      <img src="/static/img/nwcoa-certified.png" alt="NWCOA certified badge" class="h-16 object-contain sm:h-20">
+      <img src="/static/img/nwcoa-structural-bat-certified.png" alt="NWCOA structural bat certified badge" class="h-16 object-contain sm:h-20">
+      <img src="/static/img/logothing.gif" alt="Bigfoot Wildlife certification graphic" class="h-16 object-contain sm:h-20">
+    </div>
+  </div>
+
+  <div class="mt-8 text-center">
+    <a href="/about/" class="inline-flex items-center justify-center rounded border border-brand-pine/30 bg-white px-6 py-4 text-sm font-black uppercase tracking-[0.2em] text-brand-pine transition hover:-translate-y-0.5 hover:shadow-md">Learn More About Us</a>
+  </div>
+</section>
+
+{# ── FEATURED WILDLIFE ── #}
 <section id="animals" class="border-y border-brand-pine/20 bg-brand-hide">
   <div class="container mx-auto px-4 py-14 sm:px-6 lg:py-20">
     <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
@@ -93,106 +334,6 @@ path: home
           {% endif %}
         {% endfor %}
       {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section id="about" class="container mx-auto px-4 py-14 sm:px-6 lg:py-20">
-  <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-    <div>
-      <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-smoke">{{ about.eyebrow }}</p>
-      <h2 class="mt-3 text-brand-pine">{{ about.title }}</h2>
-      <p class="mt-6 text-base leading-7 text-brand-hide sm:text-lg sm:leading-8">{{ about.intro }}</p>
-      {% for paragraph in about.paragraphs %}
-        <p class="mt-4 text-base leading-8 text-brand-hide">{{ paragraph }}</p>
-      {% endfor %}
-    </div>
-
-    <div class="grid gap-4">
-      {% for value in about.values %}
-        <article class="border border-brand-pine/12 bg-white p-5 shadow-sm">
-          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-smoke">{{ value.title }}</p>
-          <p class="mt-4 text-sm leading-7 text-brand-hide">{{ value.body }}</p>
-        </article>
-      {% endfor %}
-    </div>
-  </div>
-
-  <div class="mt-12 border border-brand-pine/12 bg-white p-5 shadow-sm sm:p-6">
-    <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-      <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-smoke">Credentials</p>
-        <p class="mt-4 text-base font-semibold text-brand-ink">{{ about.credentials_intro }}</p>
-        <ul class="mt-4 grid gap-2 text-sm leading-7 text-brand-hide sm:grid-cols-2">
-          {% for credential in about.credentials %}
-            <li>{{ credential }}</li>
-          {% endfor %}
-        </ul>
-
-        <p class="mt-8 text-base font-semibold text-brand-ink">{{ about.training_intro }}</p>
-        <ul class="mt-4 grid gap-2 text-sm leading-7 text-brand-hide sm:grid-cols-2">
-          {% for training in about.training %}
-            <li>{{ training }}</li>
-          {% endfor %}
-        </ul>
-      </div>
-
-      <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-smoke">Certifications</p>
-        <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
-          <img src="/static/img/nwcoa-bird-management-certified.png" alt="NWCOA bird management certified badge" class="h-24 w-full object-contain sm:h-28">
-          <img src="/static/img/nwcoa-certified.png" alt="NWCOA certified badge" class="h-24 w-full object-contain sm:h-28">
-          <img src="/static/img/nwcoa-structural-bat-certified.png" alt="NWCOA structural bat certified badge" class="h-24 w-full object-contain sm:h-28">
-          <img src="/static/img/logothing.gif" alt="Bigfoot Wildlife certification graphic" class="h-24 w-full object-contain sm:h-28">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="coverage" class="border-y border-brand-pine/12 bg-brand-bone">
-  <div class="container mx-auto px-4 py-14 sm:px-6 lg:py-20">
-    <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10">
-      <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-smoke">{{ serviceAreas.eyebrow }}</p>
-        <h2 class="mt-3 text-brand-pine">{{ serviceAreas.title }}</h2>
-        <p class="mt-6 text-base leading-7 text-brand-hide sm:leading-8">{{ serviceAreas.intro }}</p>
-
-        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-          {% for area in serviceAreas.areas %}
-            <button type="button" data-area-focus class="block w-full border border-brand-pine/12 bg-white px-4 py-3 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-brand-pine/30 hover:bg-white hover:shadow-md">
-              <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-smoke">Zip Code {{ area.zip_code }}</p>
-              <h3 class="mt-2 text-xl font-black text-brand-pine">{{ area.city }}, {{ area.state }}</h3>
-              <p class="mt-2 text-xs font-semibold uppercase tracking-[0.24em] text-brand-smoke">{{ area.radius_miles }} mile radius</p>
-            </button>
-          {% endfor %}
-        </div>
-      </div>
-
-      <div>
-        <div id="service-area-map" class="min-h-[18rem] border border-brand-pine/12 bg-white shadow-sm sm:min-h-[22rem] lg:min-h-[26rem]"></div>
-        <div class="mt-4 flex flex-col items-start justify-between gap-4 border border-brand-pine/12 bg-white p-4 shadow-sm sm:flex-row sm:items-center">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-smoke">Need service in your area?</p>
-            <p class="mt-1 text-sm leading-7 text-brand-hide">Call for wildlife removal, exclusion, and repair estimates.</p>
-          </div>
-          <a href="tel:{{ settings.phone }}" class="inline-flex items-center justify-center rounded bg-brand-pine px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-brand-bone transition hover:-translate-y-0.5 hover:bg-brand-hide">Call {{ settings.phone }}</a>
-        </div>
-        <div class="hidden">
-          {% for area in serviceAreas.areas %}
-            <div
-              data-service-area
-              data-zip-code="{{ area.zip_code }}"
-              data-city="{{ area.city }}"
-              data-state="{{ area.state }}"
-              data-latitude="{{ area.latitude }}"
-              data-longitude="{{ area.longitude }}"
-              data-radius-miles="{{ area.radius_miles }}"
-              data-summary="{{ area.summary }}"
-            ></div>
-          {% endfor %}
-        </div>
-      </div>
     </div>
   </div>
 </section>

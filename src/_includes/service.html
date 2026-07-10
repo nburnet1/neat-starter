@@ -1,0 +1,100 @@
+---
+layout: default
+---
+
+<section class="border-b border-brand-pine/12 bg-brand-bone">
+    <div class="container mx-auto px-4 py-14 sm:px-6 lg:py-20">
+        <a href="/services/" class="text-sm font-black uppercase tracking-[0.2em] text-brand-rust underline decoration-brand-brass decoration-2 underline-offset-4">Back to all services</a>
+
+        <div class="mt-8">
+            <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-smoke">Service</p>
+            <h1 class="mt-3 text-left text-brand-pine">{{ title }}</h1>
+            <div class="mt-8 border border-brand-pine/12 bg-white p-5 shadow-sm sm:p-6">
+                <article class="prose prose-stone max-w-none prose-headings:text-brand-ink prose-p:text-brand-hide prose-li:text-brand-hide prose-strong:text-brand-ink prose-a:text-brand-rust">
+                    {{ content | safe }}
+                </article>
+            </div>
+
+            {% set serviceLocations = [] %}
+            {% for loc in collections.location %}
+              {% for ls in loc.data.location_services %}
+                {% if ls.service == title %}
+                  {% set _ = serviceLocations.push({ location: loc, animals: ls.animals }) %}
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+
+            {% if serviceLocations.length %}
+              <div class="mt-6 border border-brand-pine/12 bg-white p-5 shadow-sm sm:p-6">
+                <p class="text-xs font-semibold uppercase tracking-[0.3em] text-brand-smoke">Where We Offer {{ title }}</p>
+                <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {% for sl in serviceLocations %}
+                    <a href="{{ sl.location.url | url }}" class="block border border-brand-pine/12 p-4 transition hover:-translate-y-0.5 hover:shadow-md">
+                      <h3 class="text-lg font-black text-brand-pine">{{ sl.location.data.title }}, {{ sl.location.data.state }}</h3>
+                      <p class="mt-1 text-xs font-semibold uppercase tracking-[0.24em] text-brand-smoke">{{ sl.location.data.radius_miles }} mile radius</p>
+                      {% if sl.location.data.service_tags and sl.location.data.service_tags.length %}
+                        <div class="mt-2 flex flex-wrap gap-1">
+                          {% for tag in sl.location.data.service_tags %}
+                            <span class="rounded-full border border-brand-pine/15 bg-brand-bone px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em] text-brand-smoke">{{ tag }}</span>
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                      {% if sl.animals and sl.animals.length %}
+                        <div class="mt-2">
+                          <p class="text-[10px] font-bold uppercase tracking-[0.28em] text-brand-smoke">Animals covered here</p>
+                          <div class="mt-1 flex flex-wrap gap-1">
+                            {% for a in sl.animals %}
+                              <span class="rounded-full border border-brand-pine/15 bg-brand-bone px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em] text-brand-smoke">{{ a }}</span>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      {% endif %}
+                    </a>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+
+            {% if animals and animals.length %}
+              <div class="mt-6 border border-brand-pine/12 bg-white p-5 shadow-sm sm:p-6">
+                <p class="text-xs font-semibold uppercase tracking-[0.3em] text-brand-smoke">All Wildlife This Service Covers</p>
+                <div class="mt-4 flex flex-wrap gap-3">
+                  {% for animalName in animals %}
+                    {% set found = false %}
+                    {% for animal in collections.animal %}
+                      {% if animal.data.title == animalName and not found %}
+                        {% set found = true %}
+                        <a href="{{ animal.url | url }}" class="inline-flex rounded border border-brand-pine/12 bg-brand-bone px-4 py-2 text-sm font-semibold text-brand-pine transition hover:-translate-y-0.5 hover:shadow-sm">{{ animalName }}</a>
+                      {% endif %}
+                    {% endfor %}
+                    {% if not found %}
+                      <span class="inline-flex rounded border border-brand-pine/12 bg-brand-bone px-4 py-2 text-sm font-semibold text-brand-pine">{{ animalName }}</span>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+
+            <div class="mt-6 border border-brand-pine/12 bg-white p-5 shadow-sm sm:p-6">
+                <p class="text-xs font-semibold uppercase tracking-[0.3em] text-brand-smoke">More Services</p>
+                <div class="mt-4 flex flex-wrap gap-3">
+                    {% for svc in collections.service %}
+                        {% if svc.url != page.url %}
+                            <a href="{{ svc.url | url }}" class="inline-flex rounded border border-brand-pine/12 px-4 py-2 text-sm font-semibold text-brand-pine transition hover:bg-brand-bone">{{ svc.data.title }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="mt-8 border border-brand-pine/12 bg-brand-pine p-6 text-brand-bone shadow-sm sm:p-8">
+                <p class="text-xs font-semibold uppercase tracking-[0.3em] text-brand-sand">Need {{ title | lower }}?</p>
+                <h2 class="mt-3 text-2xl font-black text-brand-bone sm:text-3xl">Call for an estimate.</h2>
+                <p class="mt-4 max-w-2xl text-sm leading-7 text-brand-bone/80 sm:text-base">Contact us at {{ settings.phone }} for professional {{ title | lower }} services.</p>
+                <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+                    <a href="tel:{{ settings.phone }}" class="inline-flex items-center justify-center rounded bg-white px-6 py-4 text-sm font-black uppercase tracking-[0.18em] text-brand-pine transition hover:-translate-y-0.5 hover:shadow-md">Call {{ settings.phone }}</a>
+                    <a href="/contact/" class="inline-flex items-center justify-center rounded border border-brand-bone/25 px-6 py-4 text-sm font-black uppercase tracking-[0.18em] text-brand-bone transition hover:-translate-y-0.5 hover:bg-brand-bone/10">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

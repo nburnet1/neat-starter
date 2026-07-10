@@ -1,0 +1,12 @@
+eyebrow: Recent Work
+title: Photos from the field.
+photos:
+  - image: /static/img/bigfoot-logo.jpg
+    alt: Bigfoot Wildlife Solutions team at work
+    caption: Professional wildlife removal
+  - image: /static/img/nwcoa-certified.png
+    alt: NWCOA certified professionals
+    caption: Certified wildlife control
+  - image: /static/img/nwcoa-bird-management-certified.png
+    alt: Bird management certification
+    caption: Expert bird management

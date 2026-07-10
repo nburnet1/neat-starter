@@ -1,6 +1,8 @@
 ---
 title: Raccoons
 image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7aaNb3X35LreD41rG50ucXOwr2mCpr13_khzt4Z8m2w&s=10
+related_services:
+  - Raccoon Removal
 ---
 **Raccoon Removal & Control Services**
 

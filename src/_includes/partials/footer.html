@@ -1,5 +1,5 @@
 <footer class="border-t border-brand-pine/20 bg-brand-pine text-brand-bone">
-    <div class="container mx-auto grid gap-8 px-6 py-10 md:grid-cols-[1.5fr_1fr_1fr]">
+    <div class="container mx-auto grid gap-8 px-4 py-10 sm:px-6 md:grid-cols-[1.5fr_1fr_1fr]">
         <div>
             <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-sand">Big jobs. Tight seals. Fast response.</p>
             <h2 class="mt-3 text-2xl font-black text-brand-bone">{{ settings.name }}</h2>
@@ -11,21 +11,23 @@
             <ul class="mt-4 space-y-2 text-sm text-brand-bone/75">
                 <li><a class="transition hover:text-brand-sand" href="tel:{{ settings.phone }}">{{ settings.phone }}</a></li>
                 <li><a class="transition hover:text-brand-sand" href="mailto:{{ settings.email }}">{{ settings.email }}</a></li>
+                <li><a class="transition hover:text-brand-sand" href="/contact/">Contact form</a></li>
             </ul>
         </div>
 
         <div>
             <h3 class="text-sm font-black uppercase tracking-[0.3em] text-brand-bone">Online</h3>
             <ul class="mt-4 space-y-2 text-sm text-brand-bone/75">
-                <li><a class="transition hover:text-brand-sand" href="#services">Services</a></li>
+                <li><a class="transition hover:text-brand-sand" href="/services/">Services</a></li>
+                <li><a class="transition hover:text-brand-sand" href="/locations/">Locations</a></li>
+                <li><a class="transition hover:text-brand-sand" href="/about/">About</a></li>
                 <li><a class="transition hover:text-brand-sand" href="/wildlife/">Wildlife education</a></li>
-                <li><a class="transition hover:text-brand-sand" href="#about">About</a></li>
             </ul>
         </div>
     </div>
 
     <div class="border-t border-brand-hide/30">
-        <div class="container mx-auto flex flex-col gap-2 px-6 py-4 text-xs text-brand-bone/55 md:flex-row md:items-center md:justify-between">
+        <div class="container mx-auto flex flex-col gap-2 px-4 py-4 text-xs text-brand-bone/55 sm:px-6 md:flex-row md:items-center md:justify-between">
             <small>Copyright &copy; {{ settings.name }}.</small>
             <small>{{ settings.service_area }}</small>
         </div>

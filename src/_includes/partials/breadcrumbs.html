@@ -1,0 +1,45 @@
+{% if path != "home" %}
+  {% set crumbs = page.url | breadcrumbs %}
+
+  {% if crumbs.length %}
+    {% set lastCrumb = crumbs[crumbs.length - 1] %}
+    <nav aria-label="Breadcrumb" class="border-b border-brand-pine/8 bg-white/60">
+      <div class="container mx-auto px-4 py-3 sm:px-6">
+        <ol class="flex flex-wrap items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-smoke sm:text-xs">
+          <li><a href="/" class="transition hover:text-brand-pine">Home</a></li>
+          {% for crumb in crumbs %}
+            <li class="flex items-center gap-1">
+              <span class="text-brand-sand">/</span>
+              {% if loop.last %}
+                <span class="text-brand-pine">{% if crumbs.length > 1 %}{{ title }}{% else %}{{ crumb.label }}{% endif %}</span>
+              {% else %}
+                <a href="{{ crumb.url }}" class="transition hover:text-brand-pine">{{ crumb.label }}</a>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ol>
+      </div>
+    </nav>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": {{ settings.url | dump | safe }}
+          }{% for crumb in crumbs %},
+          {
+            "@type": "ListItem",
+            "position": {{ loop.index + 1 }},
+            "name": {% if loop.last and crumbs.length > 1 %}{{ title | dump | safe }}{% else %}{{ crumb.label | dump | safe }}{% endif %},
+            "item": {{ (settings.url ~ crumb.url) | dump | safe }}
+          }{% endfor %}
+        ]
+      }
+    </script>
+  {% endif %}
+{% endif %}

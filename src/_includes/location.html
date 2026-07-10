@@ -1,0 +1,171 @@
+---
+layout: default
+path: locations
+---
+
+<section class="border-b border-brand-pine/12 bg-brand-bone">
+    <div class="container mx-auto px-4 py-14 sm:px-6 lg:py-20">
+        <a href="/locations/" class="text-sm font-black uppercase tracking-[0.2em] text-brand-rust underline decoration-brand-brass decoration-2 underline-offset-4">Back to all locations</a>
+
+        <div class="mt-8">
+            <p class="text-xs font-semibold uppercase tracking-[0.35em] text-brand-smoke">Service Location</p>
+            <h1 class="mt-3 text-left text-brand-pine">{{ title }}, {{ state }}</h1>
+
+            {% if service_tags and service_tags.length %}
+              <div class="mt-4 flex flex-wrap gap-1.5">
+                {% for tag in service_tags %}
+                  <span class="rounded-full border border-brand-pine/15 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-smoke">{{ tag }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            <div class="mt-6 grid gap-6 lg:grid-cols-[1fr_1fr]">
+              <div class="border border-brand-pine/12 bg-white p-5 shadow-sm sm:p-6">
+                <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-smoke">Zip Code {{ zip_code }}</p>
+                <p class="mt-2 text-xs font-semibold uppercase tracking-[0.24em] text-brand-smoke">{{ radius_miles }} mile radius</p>
+                <div class="mt-4">
+                  <article class="prose prose-stone max-w-none prose-headings:text-brand-ink prose-p:text-brand-hide prose-li:text-brand-hide prose-strong:text-brand-ink prose-a:text-brand-rust">
+                      {{ content | safe }}
+                  </article>
+                </div>
+              </div>
+
+              <div>
+                <div id="location-map" class="min-h-[16rem] border border-brand-pine/12 bg-white shadow-sm sm:min-h-[20rem]"></div>
+                <div class="hidden">
+                  <div
+                    data-single-location
+                    data-latitude="{{ latitude }}"
+                    data-longitude="{{ longitude }}"
+                    data-radius-miles="{{ radius_miles }}"
+                    data-city="{{ title }}"
+                    data-state="{{ state }}"
+                    data-zip-code="{{ zip_code }}"
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            {% if location_services and location_services.length %}
+            <div class="mt-6 border border-brand-pine/12 bg-white p-5 shadow-sm sm:p-6">
+              <p class="text-xs font-semibold uppercase tracking-[0.3em] text-brand-smoke">Services Available in {{ title }}</p>
+              <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                {% for ls in location_services %}
+                  {% set svcFound = false %}
+                  {% for svc in collections.service %}
+                    {% if svc.data.title == ls.service and not svcFound %}
+                      {% set svcFound = true %}
+                      <a href="{{ svc.url | url }}" class="block border border-brand-pine/12 p-4 transition hover:-translate-y-0.5 hover:shadow-md">
+                        <h3 class="text-lg font-black text-brand-pine">{{ ls.service }}</h3>
+                        {% if ls.animals and ls.animals.length %}
+                          <div class="mt-2 flex flex-wrap gap-1">
+                            {% for a in ls.animals %}
+                              <span class="rounded-full border border-brand-pine/15 bg-brand-bone px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em] text-brand-smoke">{{ a }}</span>
+                            {% endfor %}
+                          </div>
+                        {% endif %}
+                      </a>
+                    {% endif %}
+                  {% endfor %}
+                  {% if not svcFound %}
+                    <div class="border border-brand-pine/12 p-4">
+                      <h3 class="text-lg font-black text-brand-pine">{{ ls.service }}</h3>
+                      {% if ls.animals and ls.animals.length %}
+                        <div class="mt-2 flex flex-wrap gap-1">
+                          {% for a in ls.animals %}
+                            <span class="rounded-full border border-brand-pine/15 bg-brand-bone px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em] text-brand-smoke">{{ a }}</span>
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="mt-6 border border-brand-pine/12 bg-white p-5 shadow-sm sm:p-6">
+              <p class="text-xs font-semibold uppercase tracking-[0.3em] text-brand-smoke">Wildlife We Handle in {{ title }}</p>
+              <div class="mt-4 flex flex-wrap gap-3">
+                {% set shownAnimals = [] %}
+                {% for ls in location_services %}
+                  {% if ls.animals %}
+                    {% for animalName in ls.animals %}
+                      {% if animalName not in shownAnimals %}
+                        {% set _ = shownAnimals.push(animalName) %}
+                        {% set animalFound = false %}
+                        {% for animal in collections.animal %}
+                          {% if animal.data.title == animalName and not animalFound %}
+                            {% set animalFound = true %}
+                            <a href="{{ animal.url | url }}" class="inline-flex rounded border border-brand-pine/12 bg-brand-bone px-4 py-2 text-sm font-semibold text-brand-pine transition hover:-translate-y-0.5 hover:shadow-sm">{{ animalName }}</a>
+                          {% endif %}
+                        {% endfor %}
+                        {% if not animalFound %}
+                          <span class="inline-flex rounded border border-brand-pine/12 bg-brand-bone px-4 py-2 text-sm font-semibold text-brand-pine">{{ animalName }}</span>
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+
+            <div class="mt-6 border border-brand-pine/12 bg-white p-5 shadow-sm sm:p-6">
+                <p class="text-xs font-semibold uppercase tracking-[0.3em] text-brand-smoke">Other Locations</p>
+                <div class="mt-4 flex flex-wrap gap-3">
+                    {% for loc in collections.location %}
+                        {% if loc.url != page.url %}
+                            <a href="{{ loc.url | url }}" class="inline-flex rounded border border-brand-pine/12 px-4 py-2 text-sm font-semibold text-brand-pine transition hover:bg-brand-bone">{{ loc.data.title }}, {{ loc.data.state }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="mt-8 border border-brand-pine/12 bg-brand-pine p-6 text-brand-bone shadow-sm sm:p-8">
+                <p class="text-xs font-semibold uppercase tracking-[0.3em] text-brand-sand">Need wildlife help in {{ title }}?</p>
+                <h2 class="mt-3 text-2xl font-black text-brand-bone sm:text-3xl">Call for wildlife removal, exclusion, and prevention help.</h2>
+                <p class="mt-4 max-w-2xl text-sm leading-7 text-brand-bone/80 sm:text-base">If you are in the {{ title }}, {{ state }} area, call {{ settings.phone }} for professional wildlife services.</p>
+                <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+                    <a href="tel:{{ settings.phone }}" class="inline-flex items-center justify-center rounded bg-white px-6 py-4 text-sm font-black uppercase tracking-[0.18em] text-brand-pine transition hover:-translate-y-0.5 hover:shadow-md">Call {{ settings.phone }}</a>
+                    <a href="/contact/" class="inline-flex items-center justify-center rounded border border-brand-bone/25 px-6 py-4 text-sm font-black uppercase tracking-[0.18em] text-brand-bone transition hover:-translate-y-0.5 hover:bg-brand-bone/10">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var mapElement = document.getElementById("location-map");
+    if (!mapElement || typeof L === "undefined") return;
+
+    var el = document.querySelector("[data-single-location]");
+    if (!el) return;
+
+    var lat = Number(el.dataset.latitude);
+    var lng = Number(el.dataset.longitude);
+    var radiusMiles = Number(el.dataset.radiusMiles);
+    var city = el.dataset.city;
+    var state = el.dataset.state;
+    var zipCode = el.dataset.zipCode;
+
+    var zoom = radiusMiles <= 20 ? 10 : radiusMiles <= 35 ? 9 : radiusMiles <= 50 ? 8 : 7;
+
+    var map = L.map(mapElement, { scrollWheelZoom: false }).setView([lat, lng], zoom);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "&copy; OpenStreetMap contributors",
+    }).addTo(map);
+
+    var marker = L.marker([lat, lng]).addTo(map);
+    L.circle([lat, lng], {
+      radius: radiusMiles * 1609.34,
+      color: "#92400e",
+      fillColor: "#d97706",
+      fillOpacity: 0.18,
+      weight: 2,
+    }).addTo(map);
+
+    marker.bindPopup("<strong>" + city + ", " + state + "</strong><br>Zip Code " + zipCode + "<br>" + radiusMiles + " mile radius").openPopup();
+  });
+</script>

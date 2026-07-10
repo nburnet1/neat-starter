@@ -10,6 +10,23 @@ module.exports = function (eleventyConfig) {
   // Merge data instead of overriding
   eleventyConfig.setDataDeepMerge(true);
 
+  // Computed permalinks: use front matter slug if set, otherwise fall back to fileSlug
+  eleventyConfig.addGlobalData("eleventyComputed", {
+    permalink: function (data) {
+      var slug = data.slug || data.page.fileSlug;
+      if (data.tags && data.tags.includes("animal")) {
+        return "/wildlife/" + slug + "/";
+      }
+      if (data.tags && data.tags.includes("service")) {
+        return "/services/" + slug + "/";
+      }
+      if (data.tags && data.tags.includes("location")) {
+        return "/locations/" + slug + "/";
+      }
+      return data.permalink;
+    },
+  });
+
   // human readable date
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
@@ -19,6 +36,27 @@ module.exports = function (eleventyConfig) {
 
   // Syntax Highlighting for Code blocks
   eleventyConfig.addPlugin(syntaxHighlight);
+
+  // Breadcrumb helper: returns array of {label, url} from a page URL
+  // Labels are derived dynamically by capitalizing and replacing hyphens with spaces
+  eleventyConfig.addFilter("breadcrumbs", function (pageUrl) {
+    if (!pageUrl || pageUrl === "/") return [];
+    var parts = pageUrl.replace(/^\/|\/$/g, "").split("/");
+    var crumbs = [];
+    var path = "";
+    for (var i = 0; i < parts.length; i++) {
+      if (parts[i] === "") continue;
+      path += "/" + parts[i];
+      var label = parts[i]
+        .split("-")
+        .map(function (word) {
+          return word.charAt(0).toUpperCase() + word.slice(1);
+        })
+        .join(" ");
+      crumbs.push({ label: label, url: path + "/" });
+    }
+    return crumbs;
+  });
 
   // To Support .yaml Extension in _data
   // You may remove this if you can use JSON

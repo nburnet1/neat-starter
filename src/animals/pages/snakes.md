@@ -1,5 +1,7 @@
 ---
 title: Snakes
+related_services:
+  - Snake Removal
 ---
 **Snake Removal & Control Services**
 

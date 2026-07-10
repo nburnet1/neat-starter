@@ -1,6 +1,8 @@
 ---
 title: Bats
 image: https://wildlifehelp.org/sites/default/files/images/species/big%20brown%20bat%20Tony%20Ross.jpg
+related_services:
+  - Bat Exclusion
 ---
 **Bat Removal & Exclusion Services**
 

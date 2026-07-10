@@ -1,5 +1,7 @@
 ---
 title: Birds
+related_services:
+  - Bird Control
 ---
 **Bird Removal & Deterrent Services**
 

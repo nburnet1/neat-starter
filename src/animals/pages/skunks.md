@@ -1,6 +1,7 @@
 ---
 title: Skunks
 image: /static/img/bryan-padron-hlivgdqffrw-unsplash.jpg
+related_services: []
 ---
 **Skunk Removal & Control Services**
 

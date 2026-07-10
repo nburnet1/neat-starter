@@ -1,6 +1,7 @@
 ---
 title: Groundhogs
 image: https://wildlifecenter.org/sites/default/files/styles/maximum/public/image/groundhog-meadow.jpg.webp?itok=gLS5GBwN
+related_services: []
 ---
 **Groundhog Removal & Control Services**
 

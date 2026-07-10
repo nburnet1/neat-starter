@@ -1,0 +1,24 @@
+eyebrow: Reviews
+title: What our clients say.
+interval: 6000
+reviews:
+  - rating: 5
+    name: Sample Reviewer
+    description: Hendersonville Homeowner
+    body: Replace this with a real review. This is placeholder text to show how the review carousel will look on the homepage.
+  - rating: 5
+    name: Sample Reviewer
+    description: Commercial Property Manager
+    body: Replace this with a real review. This is placeholder text to show how the review carousel will look on the homepage.
+  - rating: 5
+    name: Sample Reviewer
+    description: Asheville Homeowner
+    body: Replace this with a real review. This is placeholder text to show how the review carousel will look on the homepage.
+  - rating: 5
+    name: Sample Reviewer
+    description: Knoxville Business Owner
+    body: Replace this with a real review. This is placeholder text to show how the review carousel will look on the homepage.
+  - rating: 5
+    name: Sample Reviewer
+    description: Charlotte Property Manager
+    body: Replace this with a real review. This is placeholder text to show how the review carousel will look on the homepage.

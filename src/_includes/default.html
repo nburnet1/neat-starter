@@ -91,7 +91,7 @@
         ]
       }
     </script>
-    {% if path == "home" %}
+    {% if path == "home" or path == "locations" %}
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
       <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     {% endif %}
@@ -102,6 +102,7 @@
     {% include "./partials/navbar.html" %}
 
     <main class="flex-1">
+      {% include "./partials/breadcrumbs.html" %}
       {{ content | safe }}
     </main>
 

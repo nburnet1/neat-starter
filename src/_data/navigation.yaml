@@ -1,9 +1,11 @@
 items:
   - text: Services
-    url: /#services
+    url: /services/
+  - text: Locations
+    url: /locations/
   - text: About
-    url: /#about
-  - text: Service Area
-    url: /#coverage
+    url: /about/
   - text: Wildlife
     url: /wildlife/
+  - text: Contact
+    url: /contact/

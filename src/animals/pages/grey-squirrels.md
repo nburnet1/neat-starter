@@ -4,6 +4,8 @@ seo_title: ""
 seo_description: ""
 image: https://www.rottler.com/wp-content/uploads/squirrel-eating-nut.jpg
 image_alt: ""
+related_services:
+  - Squirrel Removal
 ---
 **Grey Squirrel Removal & Control Services**
 
